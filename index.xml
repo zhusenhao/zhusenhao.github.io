@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>木火</title>
+    <link>https://github.com/zhusenhao/zhusenhao.github.io/</link>
+    <description>Recent content on 木火</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://github.com/zhusenhao/zhusenhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://github.com/zhusenhao/zhusenhao.github.io/post/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://github.com/zhusenhao/zhusenhao.github.io/post/blog/</guid>
+      <description>Get/Post 区别 写了多年的CRUD，从来没有深入的了解过这两种请求的区别，我们可以从w3school搜到近乎完美的答案:
+ GET在浏览器回退时是无害的，而POST会再次提交请求。 GET产生的URL地址可以被Bookmark，而POST不可以。 GET请求会被浏览器主动cache，而POST不会，除非手动设置。 GET请求只能进行url编码，而POST支持多种编码方式。 GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。 GET请求在URL中传送的参数是有长度限制的，而POST么有。 对参数的数据类型，GET只接受ASCII字符，而POST没有限制。 GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。 GET参数通过URL传递，POST放在Request body中。  但是今天突然告诉你，GET/POST本质上是没区别的，你会怎么想？
+首先要明白GET/POST的本质是什么？
+-&amp;gt;HTTP协议中两种发送请求的方法
+而HTTP又是什么？
+-&amp;gt;是基于TCP/IP 的关于数据如何在互联网如何通讯的协议
+HTTP 的底层是TCP/IP, 所以GET/POST的本质还是TCP链接，他们两个能做的事情是一模一样的，你给GET加上一个request body, 给post的url后加上参数，理论上是完全可行的，但只会让你看起来很呆。。
+一、传输渠道 在互联网中，TCP就像是运送数据的车子，HTTP请求将车子分类， get请求是将数据放在车顶（url后面），而post请求是将数据放在车内（request body）, HTTP约定了我们的行为准则。
+二、传输大小 在万维网中还有个很重要的角色：运输公司（浏览器/服务器），他们负责数据的装载/卸货/处理，理论上讲，你可以在车顶放无限多的货物（数据），但没有哪家公司傻到会让单次的运输成本变的很大，且会对公司产生很大的负担。 并不是HTTP协议对GET请求做了大小限制，而是浏览器/服务器 所以业界不成文的规定是，（大多数）浏览器通常都会限制url长度在2K个字节，而（大多数）服务器最多处理64K大小的url。 而Post请求，浏览器没有做大小限制，tomcat服务器限制大小2M，可通过修改conf/server.xml中的“maxPostSize=0”来取消对post大小的限制。
+三、数据包 简单来讲Get产生一个数据包，Post产生两个数据包 对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）； 而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。
+所以说，GET/POST 的本质都是TCP/IP, 而HTTP才是约定GET/POST 的行为准则不同的。 </description>
+    </item>
+    
+  </channel>
+</rss>

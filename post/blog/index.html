@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title> // 木火</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.79.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://github.com/zhusenhao/zhusenhao.github.io/css/main.scss" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Get/Post 区别 写了多年的CRUD，从来没有深入的了解过这两种请求的区别，我们可以从w3school搜到近乎完美的答案:
+ GET在浏览器回退时是无害的，而POST会再次提交请求。 GET产生的URL地址可以被Bookmark，而POST不可以。 GET请求会被浏览器主动cache，而POST不会，除非手动设置。 GET请求只能进行url编码，而POST支持多种编码方式。 GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。 GET请求在URL中传送的参数是有长度限制的，而POST么有。 对参数的数据类型，GET只接受ASCII字符，而POST没有限制。 GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。 GET参数通过URL传递，POST放在Request body中。  但是今天突然告诉你，GET/POST本质上是没区别的，你会怎么想？
+首先要明白GET/POST的本质是什么？
+-&gt;HTTP协议中两种发送请求的方法
+而HTTP又是什么？
+-&gt;是基于TCP/IP 的关于数据如何在互联网如何通讯的协议
+HTTP 的底层是TCP/IP, 所以GET/POST的本质还是TCP链接，他们两个能做的事情是一模一样的，你给GET加上一个request body, 给post的url后加上参数，理论上是完全可行的，但只会让你看起来很呆。。
+一、传输渠道 在互联网中，TCP就像是运送数据的车子，HTTP请求将车子分类， get请求是将数据放在车顶（url后面），而post请求是将数据放在车内（request body）, HTTP约定了我们的行为准则。
+二、传输大小 在万维网中还有个很重要的角色：运输公司（浏览器/服务器），他们负责数据的装载/卸货/处理，理论上讲，你可以在车顶放无限多的货物（数据），但没有哪家公司傻到会让单次的运输成本变的很大，且会对公司产生很大的负担。 并不是HTTP协议对GET请求做了大小限制，而是浏览器/服务器 所以业界不成文的规定是，（大多数）浏览器通常都会限制url长度在2K个字节，而（大多数）服务器最多处理64K大小的url。 而Post请求，浏览器没有做大小限制，tomcat服务器限制大小2M，可通过修改conf/server.xml中的“maxPostSize=0”来取消对post大小的限制。
+三、数据包 简单来讲Get产生一个数据包，Post产生两个数据包 对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）； 而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。
+所以说，GET/POST 的本质都是TCP/IP, 而HTTP才是约定GET/POST 的行为准则不同的。 "/>
+
+    <meta property="og:title" content="" />
+<meta property="og:description" content="Get/Post 区别 写了多年的CRUD，从来没有深入的了解过这两种请求的区别，我们可以从w3school搜到近乎完美的答案:
+ GET在浏览器回退时是无害的，而POST会再次提交请求。 GET产生的URL地址可以被Bookmark，而POST不可以。 GET请求会被浏览器主动cache，而POST不会，除非手动设置。 GET请求只能进行url编码，而POST支持多种编码方式。 GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。 GET请求在URL中传送的参数是有长度限制的，而POST么有。 对参数的数据类型，GET只接受ASCII字符，而POST没有限制。 GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。 GET参数通过URL传递，POST放在Request body中。  但是今天突然告诉你，GET/POST本质上是没区别的，你会怎么想？
+首先要明白GET/POST的本质是什么？
+-&gt;HTTP协议中两种发送请求的方法
+而HTTP又是什么？
+-&gt;是基于TCP/IP 的关于数据如何在互联网如何通讯的协议
+HTTP 的底层是TCP/IP, 所以GET/POST的本质还是TCP链接，他们两个能做的事情是一模一样的，你给GET加上一个request body, 给post的url后加上参数，理论上是完全可行的，但只会让你看起来很呆。。
+一、传输渠道 在互联网中，TCP就像是运送数据的车子，HTTP请求将车子分类， get请求是将数据放在车顶（url后面），而post请求是将数据放在车内（request body）, HTTP约定了我们的行为准则。
+二、传输大小 在万维网中还有个很重要的角色：运输公司（浏览器/服务器），他们负责数据的装载/卸货/处理，理论上讲，你可以在车顶放无限多的货物（数据），但没有哪家公司傻到会让单次的运输成本变的很大，且会对公司产生很大的负担。 并不是HTTP协议对GET请求做了大小限制，而是浏览器/服务器 所以业界不成文的规定是，（大多数）浏览器通常都会限制url长度在2K个字节，而（大多数）服务器最多处理64K大小的url。 而Post请求，浏览器没有做大小限制，tomcat服务器限制大小2M，可通过修改conf/server.xml中的“maxPostSize=0”来取消对post大小的限制。
+三、数据包 简单来讲Get产生一个数据包，Post产生两个数据包 对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）； 而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。
+所以说，GET/POST 的本质都是TCP/IP, 而HTTP才是约定GET/POST 的行为准则不同的。 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://github.com/zhusenhao/zhusenhao.github.io/post/blog/" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://github.com/zhusenhao/zhusenhao.github.io"><img class="app-header-avatar" src="/zhusenhao/zhusenhao.github.io/avatar.jpg" alt="John Doe" /></a>
+      <h1>木火</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title"></h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 1, 0001
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h1 id="getpost-区别">Get/Post 区别</h1>
+<p>写了多年的CRUD，从来没有深入的了解过这两种请求的区别，我们可以从w3school搜到近乎完美的答案:</p>
+<ul>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST么有。</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+</ul>
+<p>但是今天突然告诉你，GET/POST本质上是<strong>没区别</strong>的，你会怎么想？</p>
+<p>首先要明白GET/POST的本质是什么？</p>
+<p>-&gt;HTTP协议中两种发送请求的方法</p>
+<p>而HTTP又是什么？</p>
+<p>-&gt;是基于TCP/IP 的关于数据如何在互联网如何通讯的协议</p>
+<p>HTTP 的底层是TCP/IP, 所以GET/POST的本质还是TCP链接，他们两个能做的事情是一模一样的，你给GET加上一个request body, 给post的url后加上参数，理论上是完全可行的，但只会让你看起来很呆。。</p>
+<h2 id="一传输渠道">一、传输渠道</h2>
+<p>在互联网中，TCP就像是运送数据的车子，HTTP请求将车子分类，
+get请求是将数据放在车顶（url后面），而post请求是将数据放在车内（request body）, HTTP约定了我们的行为准则。</p>
+<h2 id="二传输大小">二、传输大小</h2>
+<p>在万维网中还有个很重要的角色：运输公司（浏览器/服务器），他们负责数据的装载/卸货/处理，理论上讲，你可以在车顶放无限多的货物（数据），但没有哪家公司傻到会让单次的运输成本变的很大，且会对公司产生很大的负担。
+并不是HTTP协议对GET请求做了大小限制，而是浏览器/服务器
+所以业界不成文的规定是，（大多数）浏览器通常都会限制url长度在2K个字节，而（大多数）服务器最多处理64K大小的url。
+而Post请求，浏览器没有做大小限制，tomcat服务器限制大小2M，可通过修改conf/server.xml中的“maxPostSize=0”来取消对post大小的限制。</p>
+<h2 id="三数据包">三、数据包</h2>
+<p>简单来讲Get产生一个数据包，Post产生两个数据包
+对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；
+而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</p>
+<h4 id="所以说getpost-的本质都是tcpip-而http才是约定getpost-的行为准则不同的">所以说，GET/POST 的本质都是TCP/IP, 而HTTP才是约定GET/POST 的行为准则不同的。</h4>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
